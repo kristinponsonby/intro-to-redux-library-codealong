@@ -1,9 +1,20 @@
 // ./src/index.js
+// Where ReactDOM renders our application
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import counterReducer from './reducers/counterReducer.js';
-import App from './App';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import counterReducer from "./reducers/counterReducer.js";
+import App from "./App";
+import "./index.css";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(
+    counterReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+
+
+ReactDOM.render(
+    <App store={store} />  /* code change */,
+  document.getElementById("root")
+);
